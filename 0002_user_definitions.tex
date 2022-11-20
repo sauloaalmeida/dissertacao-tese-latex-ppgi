@@ -1,0 +1,216 @@
+%=====================================================================
+%% Declaration to use comments into text, in a revision fase
+%booleandeclaration
+\newboolean{REVISION}
+% Turn ON comments:true / Turn OFF comments:false
+\setboolean{REVISION}{true} % <---------
+
+\definecolor{violet}{rgb}{0.56,0.0,1.0}
+\definecolor{brightmaroon}{rgb}{0.76, 0.13, 0.28}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+
+\ifthenelse{\boolean{REVISION}}
+{
+    \newcommand{\vilc}   [1]{\textcolor{blue}   {[#1 -- VILC]}}
+    \newcommand{\sadoc}  [1]{\textcolor{red}    {[#1 -- SADOC]}}
+    \newcommand{\icc}    [1]{\textcolor{violet} {[#1 -- CUNHA]}}
+    \newcommand{\cabral} [1]{\textcolor{cyan}   {[#1 -- CABRAL]}}
+    \newcommand{\michael}[1]{\textcolor{magenta}{[#1 -- MG]}}
+%    \newcommand{\fdp}    [1]{\textcolor{black}   {#1}}
+%%%%
+    \newcommand{\edvilc} [1]{\textcolor{blue}        {#1 -- VILC}}
+    \newcommand{\ic}     [1]{\textcolor{violet}      {#1 -- CUNHA}}
+    \newcommand{\fdp}    [1]{\textcolor{black}{#1}}
+    \newcommand{\RE}     [1]{\textcolor{black}       {#1}}
+}{
+    \newcommand{\vilc}   [1]{}
+    \newcommand{\sadoc}  [1]{}
+    \newcommand{\icc}    [1]{}
+    \newcommand{\cabral} [1]{}
+    \newcommand{\michael}[1]{}
+%%%
+    \newcommand{\edvilc} [1]{#1}
+    \newcommand{\ic}     [1]{#1}
+    \newcommand{\fdp}    [1]{#1}
+    \newcommand{\RE}     [1]{#1}
+} 
+
+
+%=====================================================================
+%% Definition of theorems
+\theoremstyle{plain}
+%\newtheorem{thm}{Teorema}[section]
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+%\newtheorem{prop}{Proposição}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{conjc}{Conjectura}[section]
+%\newtheorem{sublem}[lem]{Sub-lemma}
+%\newtheorem{def}{Definition}[section]
+\newtheorem{cor}{Corollary}[section]
+%\newtheorem{prob}{Problem}[section]
+%\newtheorem{prpd}{Propriedade}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{problem}{Problem}[section]
+%\newtheorem{conj}[lem]{Conjectura}\renewcommand{\theconj}{}
+%\theoremstyle{definition}
+%\newtheorem{defi}[thm]{Defini\c c\~ ao}
+%\newtheorem{cond}[lem]{Condi\c c\~ ao}
+%\theoremstyle{example}
+%\newtheorem{exemp}[thm]{Exemplo}
+%\newtheorem{rem}[lem]{Remark}
+%\newtheorem{alem}{Lema}[section]
+
+%=====================================================================
+%% Definitions to TIKZ PACKAGE
+\begin{comment}
+
+\usetikzlibrary{positioning}
+
+\definecolor{lavander}{cmyk}{0,0.48,0,0}
+\definecolor{violet}{cmyk}{0.79,0.88,0,0}
+\definecolor{burntorange}{cmyk}{0,0.52,1,0}
+
+\tikzstyle{state}=[draw,circle,blue, text=violet, inner sep=0pt,minimum width=15pt]  
+\tikzstyle{statewhite}=[draw,circle,white, text=violet, inner sep=0pt,minimum width=15pt]  
+
+\end{comment}
+
+%=====================================================================
+%% Minimal and maximal declaration in math mode
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+
+%=====================================================================
+%% Shotcut to special characters and symbous
+\newcommand{\ind}[1]{1\hspace{-0.125cm}1\{#1\}}
+\newcommand{\CR}{ {\mbox{\em CR}} }
+
+\newcommand{\SA}{ {\cal A} }
+\newcommand{\SB}{ {\cal B} }
+\newcommand{\SC}{ {\cal C} }
+\newcommand{\SD}{ {\cal D} }
+\newcommand{\SE}{ {\cal E} }
+\newcommand{\SF}{ {\cal F} }
+\newcommand{\SG}{ {\cal G} }
+\newcommand{\SH}{ {\cal H} }
+\newcommand{\SI}{ {\cal I} }
+\newcommand{\SJ}{ {\cal J} }
+\newcommand{\SK}{ {\cal K} }
+\newcommand{\SL}{ {\cal L} }
+\newcommand{\SM}{ {\cal M} }
+\newcommand{\SN}{ {\cal N} }
+\newcommand{\SO}{ {\cal O} }
+\newcommand{\SP}{ {\cal P} }
+\newcommand{\SQ}{ {\cal Q} }
+\newcommand{\SR}{ {\cal R} }
+\newcommand{\sS}{ {\cal S} }
+\newcommand{\ST}{ {\cal T} }
+\newcommand{\SU}{ {\cal U} }
+\newcommand{\SV}{ {\cal V} }
+\newcommand{\SW}{ {\cal W} }
+\newcommand{\SX}{ {\cal X} }
+\newcommand{\SY}{ {\cal Y} }
+\newcommand{\SZ}{ {\cal Z} }
+ 
+
+\newcommand{\mb}[1]  { {\mbox{\rm #1}} }
+\newcommand{\ee}     { {\mbox{e     }} }
+\newcommand{\diag}   { {\mbox{diag  }} }
+
+\newcommand{\bGamma} { {\mbox{\boldmath $\Gamma$     }} }
+\newcommand{\bLambda}{ {\mbox{\boldmath $\Lambda$    }} }
+\newcommand{\bOmega} { {\mbox{\boldmath $\Omega$     }} }
+\newcommand{\bUpsilon}{{\mbox{\boldmath $\Upsilon$   }} }
+\newcommand{\bPi}    { {\mbox{\boldmath $\Pi$        }} }
+\newcommand{\bPsi}   { {\mbox{\boldmath $\Psi$       }} }
+\newcommand{\bpi}    { {\mbox{\boldmath $\pi$        }} }
+\newcommand{\bphi}   { {\mbox{\boldmath $\phi$       }} }
+\newcommand{\bpsi}   { {\mbox{\boldmath $\psi$       }} }
+\newcommand{\balpha} { {\mbox{\boldmath $\alpha$     }} }
+\newcommand{\bbeta}  { {\mbox{\boldmath $\beta$      }} }
+\newcommand{\bmu}    { {\mbox{\boldmath $\mu$        }} }
+
+\newcommand{\bdelta} { {\mbox{\boldmath $\delta$     }} }
+\newcommand{\bepsilon}{{\mbox{\boldmath $\epsilon$   }} }
+\newcommand{\blambda}{ {\mbox{\boldmath $\lambda$    }} }
+\newcommand{\btheta} { {\mbox{\boldmath $\theta$     }} }
+
+\newcommand{\bgamma} { {\mbox{\boldmath $\gamma$     }} }
+\newcommand{\bomega} { {\mbox{\boldmath $\omega$     }} }
+\newcommand{\btau}   { {\mbox{\boldmath $\tau$       }} }
+\newcommand{\bnu}    { {\mbox{\boldmath $\nu$        }} }
+\newcommand{\bvarep} { {\mbox{\boldmath $\varepsilon$}} }
+
+\newcommand{\bxi}    { {\mbox{\boldmath $\xi$        }} }
+\newcommand{\bzeta}  { {\mbox{\boldmath $\zeta$      }} }
+\newcommand{\bvarphi}{ {\mbox{\boldmath $\varphi$    }} }
+\newcommand{\bkappa} { {\mbox{\boldmath $\kappa$     }} }
+\newcommand{\bsigma} { {\mbox{\boldmath $\sigma$     }} }
+\newcommand{\brho}   { {\mbox{\boldmath $\rho$       }} }
+\newcommand{\bvarrho}{ {\mbox{\boldmath $\varrho$    }} }
+\newcommand{\bPhi}   { {\mbox{\boldmath $\Phi$       }} }
+
+
+\newcommand{\bA}{ \boldsymbol {A} }
+\newcommand{\bB}{ \boldsymbol {B} }
+\newcommand{\bC}{ \boldsymbol {C} }
+\newcommand{\bD}{ \boldsymbol {D} }
+\newcommand{\bE}{ \boldsymbol {E} }
+\newcommand{\bF}{ \boldsymbol {F} }
+\newcommand{\bG}{ \boldsymbol {G} }
+\newcommand{\bH}{ \boldsymbol {H} }
+\newcommand{\bI}{ \boldsymbol {I} }
+\newcommand{\bJ}{ \boldsymbol {J} }
+\newcommand{\bK}{ \boldsymbol {K} }
+\newcommand{\bL}{ \boldsymbol {L} }
+\newcommand{\bM}{ \boldsymbol {M} }
+\newcommand{\bN}{ \boldsymbol {N} }
+\newcommand{\bO}{ \boldsymbol {O} }
+\newcommand{\bP}{ \boldsymbol {P} }
+\newcommand{\bQ}{ \boldsymbol {Q} }
+\newcommand{\bR}{ \boldsymbol {R} }
+\newcommand{\bS}{ \boldsymbol {S} }
+\newcommand{\bT}{ \boldsymbol {T} }
+\newcommand{\bU}{ \boldsymbol {U} }
+\newcommand{\bV}{ \boldsymbol {V} }
+\newcommand{\bW}{ \boldsymbol {W} }
+\newcommand{\bX}{ \boldsymbol {X} }
+\newcommand{\bY}{ \boldsymbol {Y} }
+\newcommand{\bZ}{ \boldsymbol {Z} }
+
+\newcommand{\boo}{\boldsymbol {0} }
+\newcommand{\bzr}{\boldsymbol {0} }
+\newcommand{\bon}{\boldsymbol {1} }
+\newcommand{\ba}{ \boldsymbol {a} }
+\newcommand{\bb}{ \boldsymbol {b} }
+\newcommand{\bc}{ \boldsymbol {c} }
+\newcommand{\bd}{ \boldsymbol {d} }
+\newcommand{\be}{ \boldsymbol {e} }
+\newcommand{\bff}{\boldsymbol {f} }
+\newcommand{\bg}{ \boldsymbol {g} }
+\newcommand{\bh}{ \boldsymbol {h} }
+\newcommand{\bi}{ \boldsymbol {i} }
+\newcommand{\bj}{ \boldsymbol {j} }
+\newcommand{\bk}{ \boldsymbol {k} }
+\newcommand{\bl}{ \boldsymbol {l} }
+\newcommand{\bmm}{ \boldsymbol {m} }
+\newcommand{\bn}{ \boldsymbol {n} }
+\newcommand{\bo}{ \boldsymbol {o} }
+\newcommand{\bp}{ \boldsymbol {p} }
+\newcommand{\bq}{ \boldsymbol {q} }
+\newcommand{\br}{ \boldsymbol {r} }
+\newcommand{\bss}{ \boldsymbol {s} }
+\newcommand{\bt}{ \boldsymbol {t} }
+\newcommand{\bu}{ \boldsymbol {u} }
+\newcommand{\bv}{ \boldsymbol {v} }
+\newcommand{\bx}{ \boldsymbol {x} }
+\newcommand{\bw}{ \boldsymbol {w} }
+\newcommand{\by}{ \boldsymbol {y} }
+\newcommand{\bz}{ \boldsymbol {z} }
+
+

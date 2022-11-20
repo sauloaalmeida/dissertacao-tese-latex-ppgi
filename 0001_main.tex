@@ -1,0 +1,339 @@
+\documentclass[
+    % MENDT6 item 2
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% [oneside or twoside]para impressão em recto e verso. Oposto a oneside (acordo MENDT6 é opcional 1 ou 2 lados, prefenrencialmente 2 lados)
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}			% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+% ---
+	
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{amsfonts}
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{comment}
+\usepackage{enumerate}
+
+%\usepackage{lipsum}				% para geração de dummy text
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{xcolor}
+\usepackage{array}     % Elementos extras para formatação de tabelas
+
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+% MENDT6 - podem ser númerica ou autor/data
+\usepackage[num]{abntex2cite}	% Citações padrão ABNT 
+%\usepackage[alf]{abntex2cite}	% Citações padrão ABNT 
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+
+% ------------------------------------------------------------------------
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% Preenchimento obrigatório
+\input{0010_info_general}
+% ------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------
+% informações do PDF
+\makeatletter
+\input{0011_info_pdf}
+\makeatother
+% ------------------------------------------------------------------------
+ 
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+\pdfstringdefDisableCommands{\let\uppercase\relax}
+
+\setfloatlocations{quadro}{hbtp} 
+% Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ------------------------------------------------------------------------
+% Definições pessoais extras para serem incluídas no cabeçalho do
+% documento LaTex.
+\input{0002_user_definitions}
+% ------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------
+% Início do documento
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% INÍCIO ELEMENTOS PRE-TEXTUAIS
+% ------------------------------------------------------------------------
+\pretextual
+
+% ------------------------------------------------------------------------
+% Capa
+\imprimircapa
+% ---
+
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+\imprimirfolhaderosto*
+% ---
+
+% Opcional: Ficha catalográfica quando for fazer a
+% entrega final do texto
+\input{0012_info_catalographic}
+% ---
+
+% Erratas
+\input{0013_errata}
+% ---
+
+% Folha de aprovação
+\input{0020_aprovacao}
+% ---
+
+% Dedicatória
+\input{0021_dedicatoria}
+% ---
+
+% Agradecimentos
+\input{0022_agradeci}
+% ---
+
+% Epígrafe
+\input{0023_epigrafe}
+% ---
+
+% ------------------------------------------------------------------------
+% RESUMOS
+\input{0030_resumo_PT-BR}
+\input{0031_resumo_EN}
+\input{0032_resumo_FR}
+
+% ------------------------------------------------------------------------
+% LISTAS
+% ---
+% Preenchidas automaticamente pelo modelo:
+% Inserir lista de ilustrações
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% Inserir lista de quadros
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
+\cleardoublepage
+% Inserir lista de tabelas
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+% Preenchido manualmente pelo autor
+% Abreviaturas e siglas
+\input{0040_lst_siglas}
+% Símbolos
+\input{0041_lst_simbolos}
+% ------------------------------------------------------------------------
+%
+% SUMÁRIO
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+% ------------------------------------------------------------------------
+% FIM ELEMENTOS PRE-TEXTUAIS
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+% ---------------------------------------------------------
+% ----------------------------------------------------------
+% PARTE
+% Não é prevista na MENDT6, porém pode ser necessário 
+% minha dica é não use.
+% ----------------------------------------------------------
+% \part{Imunidade Coletiva diante de atacantes estratégicos}
+% ----------------------------------------------------------
+% Introdução
+\input{0110_introducao}
+% ---------------------------------------------------------
+% Descicao do Sistema
+\input{0120_desc}
+% ---------------------------------------------------------
+% Evidências no mundo real
+\input{0130_evidencias}
+% ---------------------------------------------------------
+% Modelo Epidemico
+\input{0140_model}
+% ---------------------------------------------------------
+% Simulação
+\input{0150_simul}
+% ---------------------------------------------------------
+% Análise do Modelo
+% ---------------------------------------------------------
+\input{0160_analise}
+% ---------------------------------------------------------
+% Trabalhos relacionados
+\input{0170_relacionados}
+% ---------------------------------------------------------
+% Cronograma
+\input{0180_cronograma}
+% ---------------------------------------------------------
+
+% ----------------------------------------------------------
+% Não usado no modelo UFRJ
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+%\phantompart
+
+% ---------------------------------------------------------
+% Conclusões
+% ---------------------------------------------------------
+\input{0190_conclusao}
+% ---------------------------------------------------------
+
+
+% ------------------------------------------------------------------------
+% FIM ELEMENTOS TEXTUAIS
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ------------------------------------------------------------------------
+\postextual
+
+% ------------------------------------------------------------------------
+% REFERÊNCIAS BIBLIOGRÁFICAS 
+\bibliography{1000_bibliograf}
+
+% ----------------------------------------------------------
+% GLOSSÁRIO
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%\glossary
+
+% ----------------------------------------------------------
+% APÊNDICES
+% Texto ou documento elaborado pelo autor, 
+% a fim de complementar sua argumentação, sem prejuízo da 
+% unidade nuclear do trabalho
+%\input{1100_thesis_apendice.tex}
+
+% ----------------------------------------------------------
+% ANEXOS
+% Texto ou documento não elaborado pelo autor, que serve de 
+% fundamentação, comprovação e ilustração
+%\input{1110_thesis_anexos.tex}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+\phantompart
+\printindex
+% ------------------------------------------------------------------------
+% FIM ELEMENTOS PÓS-TEXTUAIS
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+\end{document}
